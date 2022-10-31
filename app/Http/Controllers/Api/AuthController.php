@@ -23,5 +23,7 @@ class AuthController extends Controller
             'email' => auth()->user()->email,
             'token' => auth()->user()->createToken('api token',['server:not'])->plainTextToken
         ]);
+
+        // s
     }
 }
