@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Comments;
+use App\Models\User;
 use Illuminate\Http\Request;
 
-class CommentController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class CommentController extends Controller
      */
     public function index()
     {
-        return Comments::all();
+        return User::all();
     }
 
     /**
