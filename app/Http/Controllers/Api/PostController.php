@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\PostResource;
+use App\Models\Posts;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -14,7 +17,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        return PostResource::collection(Posts::all());
     }
 
     /**
@@ -23,9 +26,17 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request,User $user)
     {
-        //
+       // $user = auth('sanctum')->user()->id;
+        $novo = User::find(4);
+
+        $new = new Posts;
+        //$new->user_id = auth('sanctum')->user()->id;
+        $new->user_id = $novo->id;
+        $new->post = 'Sou texto user 4';
+        $new->save();
+
     }
 
     /**

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UserRequest;
+use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -15,7 +17,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return User::all();
+        return UserResource::collection(User::all());
     }
 
     /**
@@ -24,9 +26,11 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserRequest $request)
     {
-        //
+        $user = new User;
+        $user->create($request->all());
+        
     }
 
     /**

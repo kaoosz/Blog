@@ -1,6 +1,10 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\CommentController;
+use App\Http\Controllers\Api\PostController;
+use App\Http\Controllers\Api\UserController;
+use Illuminate\Contracts\Auth\UserProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -23,4 +27,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('login',[AuthController::class,'login']);
 
-//Route::resource('post')
+Route::resource('post',PostController::class);
+Route::resource('user',UserController::class);
+Route::resource('comments',CommentController::class);

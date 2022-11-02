@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\CommentResource;
 use App\Models\Comments;
+use App\Models\Posts;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller
@@ -15,7 +17,7 @@ class CommentController extends Controller
      */
     public function index()
     {
-        return Comments::all();
+        return CommentResource::collection(Comments::all());
     }
 
     /**
@@ -26,7 +28,15 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $post = Posts::find(1);
+
+        $novo = new Comments;
+        $novo->text = $request->text;
+        $novo->post_id = $post->id;
+        $novo->save();
+        //dd(auth('sanctum')->user()->id,$novo);
+
+       // $new->user_id = auth('sanctum')->user()->id;
     }
 
     /**
